@@ -1,0 +1,14 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "keenable-plugin",
+  "version": "1.0.0",
+  "description": "Web search and page fetching through Keenable's hosted MCP server, with search and research skills. Works without an API key.",
+  "author": {
+    "name": "Keenable",
+    "url": "https://keenable.ai"
+  },
+  "homepage": "https://docs.keenable.ai/mcp-server",
+  "repository": "https://github.com/keenableai/keenable-hermes-plugin",
+  "license": "MIT",
+  "keywords": ["keenable", "search", "web", "fetch", "research", "mcp"]
+}

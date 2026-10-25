@@ -1,0 +1,20 @@
+# Optional. The plugin works without a key; a Keenable API key removes the
+# hourly cap of the shared keyless pool.
+#
+# 1. Store the key in the active Hermes profile first (it goes to that profile's .env):
+#      hermes config set KEENABLE_API_KEY <your key>
+#    Hermes refuses to connect this entry while the variable is unset.
+# 2. Merge this entry into the same profile's config.yaml. A config.yaml server
+#    named `keenable` replaces the plugin's packaged keyless connection as a whole.
+#    Keep your other mcp_servers entries.
+mcp_servers:
+  keenable:
+    url: https://api.keenable.ai/mcp
+    strict_redirect_headers: true
+    headers:
+      X-API-Key: "${KEENABLE_API_KEY}"
+      X-Keenable-Title: hermes-plugin
+    # The server publishes tools only; skip Hermes's generic resource/prompt helpers.
+    tools:
+      resources: false
+      prompts: false
