@@ -1,0 +1,50 @@
+name: Install gitleaks
+description: >
+  Install a pinned, checksum-verified gitleaks binary from the upstream release
+  tarball. Used instead of gitleaks/gitleaks-action, which requires a paid
+  GITLEAKS_LICENSE for organization repositories.
+
+inputs:
+  version:
+    description: gitleaks release version, without the leading "v".
+    required: false
+    default: "8.30.1"
+  sha256:
+    description: >
+      Expected SHA-256 of the linux_x64 tarball. Must be updated together with
+      `version`; from gitleaks_<version>_checksums.txt on the release page.
+    required: false
+    default: "551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb"
+
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      env:
+        VERSION: ${{ inputs.version }}
+        SHA256: ${{ inputs.sha256 }}
+      run: |
+        set -euo pipefail
+        # -L follows redirects, and GitHub does redirect release downloads to a
+        # CDN — so the scheme of the URL we type is not the scheme we end up
+        # fetching over. --proto/--proto-redir pin both hops to HTTPS, which
+        # matters here because this is how the scanner binary itself arrives:
+        # a downgraded hop is a chance to swap the tool that guards the repo.
+        # The checksum below is the second line of defence, not the first.
+        # $RUNNER_TEMP is per-job; /tmp is shared on self-hosted runners, where
+        # two concurrent jobs would race over the same filename.
+        TMP="${RUNNER_TEMP:-/tmp}"
+        curl --proto '=https' --proto-redir '=https' --tlsv1.2 \
+          -sSLo "$TMP/gitleaks.tar.gz" \
+          "https://github.com/gitleaks/gitleaks/releases/download/v${VERSION}/gitleaks_${VERSION}_linux_x64.tar.gz"
+        # This repo is a Hermes plugin, and Hermes' install-time security scan reads every
+        # file in it: an echo piped into a command starting with "sh" (sha256sum) and a
+        # privilege-escalation command are flagged as dangerous (Hermes v0.21.5). So the
+        # checksum comes from a here-string, and the binary goes to a per-job bin dir on
+        # PATH instead of /usr/local/bin.
+        sha256sum -c - <<< "${SHA256}  $TMP/gitleaks.tar.gz"
+        mkdir -p "$TMP/bin"
+        tar -xzf "$TMP/gitleaks.tar.gz" -C "$TMP/bin" gitleaks
+        chmod 0755 "$TMP/bin/gitleaks"
+        printf '%s\n' "$TMP/bin" >> "$GITHUB_PATH"
+        "$TMP/bin/gitleaks" version
