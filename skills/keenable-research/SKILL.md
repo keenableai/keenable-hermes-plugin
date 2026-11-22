@@ -27,9 +27,11 @@ skill for the full argument reference (find its qualified name with
    - Recency matters: add `published_after` (`YYYY-MM-DD`).
    - A primary source exists: add `site` with its domain (official docs, the
      vendor's blog, a standards body, a government site).
-   - Pass `objective` as described in the keenable-search skill: a short,
-     self-contained statement of what the search is for, up to 1,000 characters,
-     with no personal or confidential details.
+   - Pass `objective` (two or three self-contained sentences, up to 1,000
+     characters) restating this sub-question in general, public terms; it is
+     sent to Keenable with the query. Never include user identifiers, personal
+     or confidential details or conversation content; if the sub-question cannot
+     be described without them, omit it.
    - You only need to pick pages: lower `snippet_max_length` (for example 300)
      and raise `max_results`.
 4. **Read the snippets first.** Group what they say by sub-question. Mark each

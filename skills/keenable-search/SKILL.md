@@ -33,11 +33,12 @@ use it.
 - **Answer from snippets when they are enough.** Snippets are taken from the
   page text and usually carry the fact. Do not fetch every result.
 - **Say what the search is for.** Pass `objective`: two or three self-contained
-  sentences on what the search is for (facts a good page must contain, public
-  context the query leaves out, sources to prefer or exclude), up to 1,000
-  characters. The text is sent to Keenable with the query, so never include user
-  identifiers, personal details, confidential information or conversation
-  content. It helps the ranker pick pages for the task.
+  sentences restating the research question in general, public terms (facts a
+  good page must contain, kinds of sources to prefer or exclude), up to 1,000
+  characters. It is sent to Keenable with the query. Do not quote or summarize
+  the user's conversation, and never include user identifiers, personal or
+  confidential details; if the task cannot be described without them, omit the
+  objective. It helps the ranker pick pages for the task.
 - **Cite the URLs** behind every claim you take from results.
 
 ## Arguments
