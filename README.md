@@ -21,7 +21,8 @@ What it adds:
 
 - Keenable's MCP tools as direct tools, with the controls the built-in backend
   does not expose: single-site search (`site`), publish-date bounds
-  (`published_after`, `published_before`), result count and snippet length, and
+  (`published_after`, `published_before`), result count and snippet length, an
+  `objective` (what the search is for, used by the ranker), and
   page fetches that return only what a `prompt` asks for.
 - Two skills: `keenable-search` (arguments, when to fetch, limits,
   troubleshooting) and `keenable-research` (split a question, search in

@@ -22,7 +22,7 @@ except ImportError:  # pragma: no cover - only when run outside a Hermes environ
 
 # The tool arguments the skills teach. The hosted server rejects unknown arguments,
 # so every JSON example in a skill must stay inside these sets.
-SEARCH_ARGS = {"query", "site", "published_after", "published_before", "max_results", "snippet_max_length"}
+SEARCH_ARGS = {"query", "site", "published_after", "published_before", "max_results", "snippet_max_length", "objective"}
 FETCH_ARGS = {"url", "prompt", "max_chars"}
 
 

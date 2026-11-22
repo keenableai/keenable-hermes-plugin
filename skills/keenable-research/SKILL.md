@@ -27,6 +27,10 @@ skill for the full argument reference (find its qualified name with
    - Recency matters: add `published_after` (`YYYY-MM-DD`).
    - A primary source exists: add `site` with its domain (official docs, the
      vendor's blog, a standards body, a government site).
+   - Pass `objective`: two or three self-contained sentences on what the search
+     is for (facts a good page must contain, context the query leaves out,
+     sources to prefer or exclude, what is already known), up to 1,000
+     characters, no personal or confidential information.
    - You only need to pick pages: lower `snippet_max_length` (for example 300)
      and raise `max_results`.
 4. **Read the snippets first.** Group what they say by sub-question. Mark each
