@@ -33,10 +33,11 @@ use it.
 - **Answer from snippets when they are enough.** Snippets are taken from the
   page text and usually carry the fact. Do not fetch every result.
 - **Say what the search is for.** Pass `objective`: two or three self-contained
-  sentences on the task (facts a good page must contain, context the query
-  leaves out, sources to prefer or exclude, what is already known), up to 1,000
-  characters, no personal or confidential information. It helps the ranker pick
-  pages for the task and costs nothing extra.
+  sentences on what the search is for (facts a good page must contain, public
+  context the query leaves out, sources to prefer or exclude), up to 1,000
+  characters. The text is sent to Keenable with the query, so never include user
+  identifiers, personal details, confidential information or conversation
+  content. It helps the ranker pick pages for the task.
 - **Cite the URLs** behind every claim you take from results.
 
 ## Arguments
@@ -54,7 +55,7 @@ invent ones such as `numResults` or `limit`.
 | `published_before` | `YYYY-MM-DD`. Upper bound on publish date. |
 | `max_results` | 1 to 50, default 10. Use 3 to 5 for a quick fact. |
 | `snippet_max_length` | 180 to 10000 characters per snippet. Lower it to save context when you only need titles and URLs. |
-| `objective` | Two or three self-contained sentences on what the search is for: facts a good page must contain, context the query leaves out, sources to prefer or exclude, what is already known. Up to 1,000 characters, no personal or confidential information. It helps the ranker pick pages for the task and costs nothing extra. |
+| `objective` | What the search is for, in two or three self-contained sentences, up to 1,000 characters. See "Say what the search is for" above for what to put in it and what to leave out. |
 
 `query_time` is a point-in-time search (it excludes everything newer than the
 given moment). It is not a recency filter: for "latest" or "this week", use
