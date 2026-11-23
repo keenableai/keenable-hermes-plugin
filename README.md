@@ -121,7 +121,7 @@ Never paste a key into chat, this repository, or `mcp.json`.
 ## Data flow
 
 - Requests go to `https://api.keenable.ai/mcp` over HTTPS. Keenable receives the
-  search queries, the URLs to fetch, and any fetch `prompt` the agent sends. With a
+  search queries, any search `objective`, the URLs to fetch, and any fetch `prompt` the agent sends. With a
   `prompt`, Keenable reads the page server-side with a language model and returns
   only the answer.
 - Every request carries `X-Keenable-Title: hermes-plugin`, an application label
