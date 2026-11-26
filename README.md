@@ -21,7 +21,8 @@ What it adds:
 
 - Keenable's MCP tools as direct tools, with the controls the built-in backend
   does not expose: single-site search (`site`), publish-date bounds
-  (`published_after`, `published_before`), result count and snippet length, and
+  (`published_after`, `published_before`), result count and snippet length, an
+  `objective` (what the search is for, used by the ranker), and
   page fetches that return only what a `prompt` asks for.
 - Two skills: `keenable-search` (arguments, when to fetch, limits,
   troubleshooting) and `keenable-research` (split a question, search in
@@ -120,9 +121,9 @@ Never paste a key into chat, this repository, or `mcp.json`.
 ## Data flow
 
 - Requests go to `https://api.keenable.ai/mcp` over HTTPS. Keenable receives the
-  search queries, the URLs to fetch, and any fetch `prompt` the agent sends. With a
-  `prompt`, Keenable reads the page server-side with a language model and returns
-  only the answer.
+  search queries, any search `objective`, the URLs to fetch, and any fetch
+  `prompt` the agent sends. With a `prompt`, Keenable reads the page server-side
+  with a language model and returns only the answer.
 - Every request carries `X-Keenable-Title: hermes-plugin`, an application label
   so Keenable can tell this integration's traffic apart. It carries no user or
   device identifier.

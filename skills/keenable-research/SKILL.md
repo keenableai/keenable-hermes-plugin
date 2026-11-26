@@ -5,7 +5,7 @@ license: MIT
 compatibility: Requires the keenable MCP server supplied by this Hermes plugin (https://api.keenable.ai/mcp).
 metadata:
   author: Keenable
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Keenable Research
@@ -27,6 +27,12 @@ skill for the full argument reference (find its qualified name with
    - Recency matters: add `published_after` (`YYYY-MM-DD`).
    - A primary source exists: add `site` with its domain (official docs, the
      vendor's blog, a standards body, a government site).
+   - Pass `objective` only when a sub-question is ambiguous or builds on earlier
+     results: say what the query leaves out and what earlier searches found, and
+     do not restate the sub-question (up to 1,000 characters). It is sent to
+     Keenable with the query; never include user identifiers, personal or
+     confidential details or conversation content, and omit it if it cannot be
+     written without them.
    - You only need to pick pages: lower `snippet_max_length` (for example 300)
      and raise `max_results`.
 4. **Read the snippets first.** Group what they say by sub-question. Mark each

@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "keenable-plugin",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Web search and page fetching through Keenable's hosted MCP server, with search and research skills. Works without an API key.",
   "author": {
     "name": "Keenable",

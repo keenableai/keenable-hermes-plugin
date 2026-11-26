@@ -5,7 +5,7 @@ license: MIT
 compatibility: Requires the keenable MCP server supplied by this Hermes plugin (https://api.keenable.ai/mcp).
 metadata:
   author: Keenable
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Keenable Search
@@ -32,6 +32,12 @@ use it.
   of one long query.
 - **Answer from snippets when they are enough.** Snippets are taken from the
   page text and usually carry the fact. Do not fetch every result.
+- **Say what the search is for.** Pass `objective` only for multi-step or
+  ambiguous questions, not every search. In one to three sentences, say what the
+  query leaves out (who, where, when, which sources count) and what earlier
+  searches found; do not restate the question. Up to 1,000 characters. It is
+  sent to Keenable with the query, so never include user identifiers or personal
+  or confidential details, and omit it when it cannot be written without them.
 - **Cite the URLs** behind every claim you take from results.
 
 ## Arguments
@@ -49,6 +55,7 @@ invent ones such as `numResults` or `limit`.
 | `published_before` | `YYYY-MM-DD`. Upper bound on publish date. |
 | `max_results` | 1 to 50, default 10. Use 3 to 5 for a quick fact. |
 | `snippet_max_length` | 180 to 10000 characters per snippet. Lower it to save context when you only need titles and URLs. |
+| `objective` | What the search is for: what the query leaves out and what earlier searches found, for multi-step or ambiguous questions; up to 1,000 characters. See "Say what the search is for" above. |
 
 `query_time` is a point-in-time search (it excludes everything newer than the
 given moment). It is not a recency filter: for "latest" or "this week", use
